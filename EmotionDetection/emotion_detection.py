@@ -33,6 +33,13 @@ def emotion_detector(text_to_analyse):
         emotions = formatted_response["emotionPredictions"][0]["emotion"]
         dominant_emotion = fetch_dominant_emotion(emotions)
         emotions["dominant_emotion"] = dominant_emotion
-    else:
-        emotions = {"message": "Emotions not found"}
+    elif response.status_code == 400:
+        emotions = {
+            "anger": None,
+            "disgust": None,
+            "fear": None,
+            "joy": None,
+            "sadness": None,
+            "dominant_emotion": None,
+        }
     return emotions
